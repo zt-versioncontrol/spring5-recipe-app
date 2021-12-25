@@ -8,7 +8,12 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String description;
+
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
     private Integer preperationTime;
     private Integer cookTime;
     private Integer servings;
@@ -39,6 +44,14 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Integer getPreperationTime() {
