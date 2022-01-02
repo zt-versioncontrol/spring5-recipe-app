@@ -8,5 +8,23 @@
 
 <h1>My Recipes</h1>
 
+<div th:each="recipe : ${recipeList}">
+
+    <h2 th:text="${recipe.name}"></h2>
+    <img  th:src="'/recipeImg/' + ${recipe.id}">
+    <p th:text="${recipe.description}"></p>
+
+    <br><br>
+
+    <h3>Ingredients</h3>
+    <ul th:each="ingredient : ${recipe.ingredients}">
+
+        <li th:text="${ingredient.amount} + ' ' +
+            ${ingredient.unitOfMeasure.description} + ' ' +
+            ${ingredient.description}"></li>
+    </ul>
+
+</div>
+
 </body>
 </html>
