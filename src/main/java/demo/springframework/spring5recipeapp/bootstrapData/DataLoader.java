@@ -4,6 +4,7 @@ import demo.springframework.spring5recipeapp.domain.*;
 import demo.springframework.spring5recipeapp.services.CategoryService;
 import demo.springframework.spring5recipeapp.services.RecipeService;
 import demo.springframework.spring5recipeapp.services.UnitOfMeasureService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
     private final RecipeService recipeService;
@@ -38,8 +40,11 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        log.debug("Loading Categories from Database...");
         initializeCategories();
+        log.debug("Loading Unites of Measure from Database...");
         initializeUnitsOfMeasure();
+        log.debug("Bootstrapping Database with Guacamole Recipe...");
         saveGuacamole();
     }
 
