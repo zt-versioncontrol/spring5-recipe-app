@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${recipe.name}">Recipe Details</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script href="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h1>Dummy content</h1>
+
+<div class="container">
+    <div class="card my-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="img-fluid rounded-start" th:src="'/recipeImg/' + ${recipe.id}">
+            </div>
+
+
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${recipe.name}"></h5>
+                    <p class="card-text" th:text="${recipe.description}"></p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h3>Ingredients</h3>
+    <ul th:each="ingredient : ${recipe.ingredients}">
+        <li th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.description} + ' ' +
+                        ${ingredient.description}"></li>
+    </ul>
+
+</div>
 
 </body>
 </html>
