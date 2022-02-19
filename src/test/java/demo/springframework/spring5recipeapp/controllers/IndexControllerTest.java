@@ -5,10 +5,9 @@ import demo.springframework.spring5recipeapp.services.RecipeService;
 import demo.springframework.spring5recipeapp.services.RecipeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -20,7 +19,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockitoExtension.class)
 class IndexControllerTest {
+    @InjectMocks
     private IndexController indexController;
 
     @Mock
@@ -31,8 +32,6 @@ class IndexControllerTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
-        indexController = new IndexController(recipeService);
     }
 
     @Test
