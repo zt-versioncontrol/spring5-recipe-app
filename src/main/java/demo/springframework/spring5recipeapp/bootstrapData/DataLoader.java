@@ -69,7 +69,7 @@ public class DataLoader implements CommandLineRunner {
         guacamole.getCategories().add(mexicanCategory);
         guacamole.setDescription(BootstrapDataStrings.GUACAMOLE_DESCRIPTION);
         guacamole.setDifficulty(Difficulty.EASY);
-        guacamole.setPreperationTime(10);
+        guacamole.setPreparationTime(10);
         guacamole.setCookTime(10);
         guacamole.setServings(3);
         guacamole.setSource(BootstrapDataStrings.GUACAMOLE_SOURCE);

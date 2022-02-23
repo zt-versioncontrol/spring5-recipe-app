@@ -1,5 +1,8 @@
 package demo.springframework.spring5recipeapp.services;
 
+import demo.springframework.spring5recipeapp.commands.RecipeCommand;
+import demo.springframework.spring5recipeapp.converters.RecipeCommandToRecipe;
+import demo.springframework.spring5recipeapp.converters.RecipeToRecipeCommand;
 import demo.springframework.spring5recipeapp.domain.Recipe;
 import demo.springframework.spring5recipeapp.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,14 +15,26 @@ import java.util.List;
 @Service
 public class RecipeServiceImpl implements RecipeService{
     private final RecipeRepository recipeRepository;
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
     public Recipe save(Recipe recipe){
         return recipeRepository.save(recipe);
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detatchedRecipe = recipeCommandToRecipe.convert(command);
+        Recipe savedRecipe = recipeRepository.save(detatchedRecipe);
+
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 
     @Override

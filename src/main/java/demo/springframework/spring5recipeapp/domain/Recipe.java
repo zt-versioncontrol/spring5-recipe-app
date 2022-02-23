@@ -27,7 +27,7 @@ public class Recipe {
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 
-    private Integer preperationTime;
+    private Integer preparationTime;
     private Integer cookTime;
     private Integer servings;
     private String source;
