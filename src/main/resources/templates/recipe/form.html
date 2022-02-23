@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Form</title>
+</head>
+<body>
+
+<form  th:object="${recipe}" th:action="@{/recipe/}"  method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <br>
+    <label>Recipe Name:</label>
+    <input type="text" class="form-control" th:field="*{name}"/>
+    <br>
+    <label>Recipe Description:</label>
+    <input type="text" class="form-control" th:field="*{description}"/>
+    <br>
+    <label>Categories:</label>
+    <label>
+        <input type="checkbox" value=""/>
+        Cat 1
+    </label>
+    <br>
+    <label>Prep Time:</label>
+    <input type="text" class="form-control" th:field="*{prepTime}"/>
+    <br>
+    <label>Cooktime:</label>
+    <input type="text" class="form-control" th:field="*{cookTime}"/>
+    <br>
+    <label>Difficulty:</label>
+    <select class="form-control">
+        <option>Easy</option>
+        <option>Medium</option>
+        <option>Hard</option>
+    </select>
+    <br>
+    <label>Servings:</label>
+    <input type="text" class="form-control" th:field="*{servings}"/>
+    <br>
+    <label>Source:</label>
+    <input type="text" class="form-control" th:field="*{source}"/>
+    <br>
+    <label>URL:</label>
+    <input type="text" class="form-control" th:field="*{url}"/>
+    <br>
+    <h1 class="panel-title">Ingredients</h1>
+    <a class="btn btn-default" href="#" role="button">Edit</a>
+    <ul>
+        <li th:each="ingredient : ${recipe.ingredients}"
+            th:text="${(ingredient.getAmount() +
+			' ' + ingredient.uom.getDescription() +
+			' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
+        </li>
+    </ul>
+    <br>
+    <h1 class="panel-title">Directions</h1>
+    <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+    <br>
+    <h1 class="panel-title">Notes</h1>
+    <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>
