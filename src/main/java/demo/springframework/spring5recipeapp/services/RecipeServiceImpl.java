@@ -7,6 +7,7 @@ import demo.springframework.spring5recipeapp.domain.Recipe;
 import demo.springframework.spring5recipeapp.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe detatchedRecipe = recipeCommandToRecipe.convert(command);
         Recipe savedRecipe = recipeRepository.save(detatchedRecipe);
@@ -52,5 +54,11 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public Recipe findById(Long id) {
         return recipeRepository.findById(id).get();
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        return recipeToRecipeCommand.convert(findById(id));
     }
 }

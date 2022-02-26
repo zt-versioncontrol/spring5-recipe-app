@@ -23,6 +23,7 @@
     <tr th:each="recipe : ${recipeList}">
         <td><a th:href="'/recipe/show/' + ${recipe.id}" th:text="${recipe.id}"></a></td>
         <td th:text="${recipe.name}">abc</td>
+        <td><a th:href="'/recipe/update/' + ${recipe.id}">Update</a></td>
     </tr>
     </tbody>
 
