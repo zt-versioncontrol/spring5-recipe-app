@@ -13,4 +13,5 @@ public interface RecipeService {
     List<Recipe> findAll();
     Recipe findById(Long id);
     RecipeCommand findCommandById(Long id);
+    void deleteById(Long id);
 }
