@@ -18,6 +18,6 @@ public class IngredientController {
     public String listRecipeIngredients(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
 
-        return "recipe/ingredient/list";
+        return "ingredient/recipe_ingredients";
     }
 }
